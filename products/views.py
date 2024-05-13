@@ -8,4 +8,4 @@ def list_products(request):
     return render(request, 'products_list.html')
 
 def single_product(request):
-    return render(request, 'single_product.html')
+    return render(request, 'product_display.html')
