@@ -28,10 +28,9 @@
         {%endfor%}
         
         <div class="page-btn">
-            <span>1</span>
-            <span>2</span>
-            <span>3</span>
-            <span>4</span>
-            <span>→</span>
+            {%for i in products.paginator.page_range%}
+            <a href="?page={{i}}"><span>{{i}}</span></a>
+            {%endfor%}
+
         </div>
     </div>
