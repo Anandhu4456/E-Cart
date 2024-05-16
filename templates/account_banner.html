@@ -9,7 +9,7 @@
                 {%if messages%}
                 <div>
                     {%for message in messages%}
-                    {{message}}
+                    <li class="{{message.tags}}">{{message}}</li>
                     {%endfor%}
                 </div>
                 {%endif%}

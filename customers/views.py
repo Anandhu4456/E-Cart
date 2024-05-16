@@ -23,7 +23,7 @@ def account(request):
                 user=user,
                 phone=phone
             )
-            return redirect('home')
+            messages.success(request,"User successfully signed-up")
         except Exception as e:
             error_msg = "Duplicate username or invalid credentials"
             messages.error(request,error_msg)

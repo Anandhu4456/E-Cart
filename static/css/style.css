@@ -407,6 +407,13 @@ th:last-child{
 .form-btn{
     display: inline-block;
 }
+.error{
+    color: red;
+}
+.success{
+    color: lightgreen;
+}
+
 .form-container form{
     max-width: 300px;
     padding: 0 20px;
