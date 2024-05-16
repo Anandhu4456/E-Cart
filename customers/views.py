@@ -1,10 +1,13 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate,login
 from .models import Customer
 from django.contrib import messages
 # Create your views here.
 def account(request):
+    context={}
     if request.POST and 'register' in request.POST:
+        context['register']=True
         try:
             username= request.POST.get('username')
             phone = request.POST.get('phone')
@@ -12,7 +15,7 @@ def account(request):
             password = request.POST.get('password')
             
             #create user account
-            user= User.objects.create(
+            user= User.objects.create_user(
                 username =username,
                 email=email,
                 password=password
@@ -27,4 +30,15 @@ def account(request):
         except Exception as e:
             error_msg = "Duplicate username or invalid credentials"
             messages.error(request,error_msg)
-    return render(request,'account.html')
+    if request.POST and 'login' in request.POST:
+        context['register']=False
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        
+        userExist = authenticate(username=username,password=password)
+        if userExist:
+            login(request,userExist)
+            return redirect('home')
+        else:
+            error_msg = "User not found...Please register first or check credentials"
+    return render(request,'account.html',context)
